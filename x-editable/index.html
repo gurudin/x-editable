@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X-editable</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">X-editable</a>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="javascript:;">主页</a>
+                </li>
+                <li>
+                    <a href="demo.html" target="_blank">演示</a>
+                </li>
+                <li>
+                    <a href="docs.html">文档</a>
+                </li>
+                <li>
+                    <a href="faq.html">常见问题</a>
+                </li>
+                <li>
+                    <a href="https://github.com/vitalets/x-editable" target="_blank">Github</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="hero-unit jumbotron">
+        <h1>X-editable</h1>
+        <p class="text-muted">可以使用
+            <a href="http://getbootstrap.com" target="_blank">Twitter Bootstrap</a>,
+            <a href="http://jqueryui.com" target="_blank">jQuery UI</a> 或者纯
+            <a href="http://jquery.com" target="_blank">jQuery</a> 进行编辑
+        </p>
+        <p>
+            <small>
+            该插件可以在页面上创建和编辑元素。可以和（bootstrap，jquery-ui，jquery库）配合使用，包括
+            <i>弹出(popup)</i> 与
+            <i>内联(inline)</i> 两种模式可以选择。点击Demo查看演示。
+            </small>
+        </p>
+        <div style="text-align: center">
+            <p>
+                <a class="btn btn-success btn-lg" style="width:163px;" href="demo.html" target="_blank">演示
+                    <span style="font-size: 0.8em">(new window)</span>
+                </a>
+                <a class="btn btn-primary btn-lg" style="width:163px;" href="docs.html">查看文档</a>
+            </p>
+            <p>
+                <small class="text-muted">当前版本 1.5.1
+                    <a href="assets/x-editable/CHANGELOG.txt">修改日志</a>
+                </small>
+            </p>
+            <p>
+                <!-- <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered"
+                    title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.6b8337773e8a8ecc4f0b054fec8f1482.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=xeditable&amp;show_count=false&amp;show_screen_name=true&amp;size=m&amp;time=1512984301683"
+                    style="position: static; visibility: visible; width: 132px; height: 20px;" data-screen-name="xeditable"></iframe> -->
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <p style="text-align: center">↓ 选择与X-editable配合使用的核心库 ↓</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Bootstrap
+                <small>(2 or 3)</small>
+            </h2>
+            <p>
+                用Bootstrap编辑 <a href="http://getbootstrap.com/css/#forms" target="_blank">样式文档地址</a>，
+                弹出模式 <a href="http://getbootstrap.com/javascript/#popovers" target="_blank">文档地址</a>。
+                日期输入模式采用 <a target="_blank" href="https://github.com/eternicode/bootstrap-datepicker">bootstrap-datepicker</a>
+                库。
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>jQuery UI
+                <small>(1.9+)</small>
+            </h2>
+            <p>
+                最低支持 jQuery UI 1.9 版本 <a href="http://jqueryui.com/tooltip" target="_blank">提示插件</a>。
+                结合按钮样式编辑弹出窗口 <a href="http://jqueryui.com/button" target="_blank">Button widget</a>。
+                可以使用任何主题的 jQuery UI <a href="http://jqueryui.com/themeroller" target="_blank">Themeroller</a>。
+        </div>
+        <div class="col-md-4">
+            <h2>jQuery
+                <small>(+ poshytip plugin)</small>
+            </h2>
+            <p>
+                X-editable基于jQuery，内联模式与弹出模式引入jQuery即可。
+                对于日期字段可以引入 <a href="http://vitalets.github.com/combodate" target="_blank">combodate</a> 或者 
+                <a href="http://momentjs.com" target="_blank">momentjs</a> 库。
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <p class="centered">
+                <img src="image/bootstrap.png" class="img-responsive">
+            </p>
+            <p class="centered">
+                <a class="btn btn-primary btn-sm" href="https://vitalets.github.io/x-editable/assets/zip/bootstrap3-editable-1.5.1.zip">
+                    <strong>下载</strong> BS3 build</a>
+                <a class="btn btn-primary btn-sm" href="https://vitalets.github.io/x-editable/assets/zip/bootstrap-editable-1.5.1.zip">BS2 build</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="centered">
+                <img src="image/jqueryui.png" class="img-responsive">
+            </p>
+            <p class="centered">
+                <a class="btn btn-primary btn-sm" href="https://vitalets.github.io/x-editable/assets/zip/jqueryui-editable-1.5.1.zip">
+                    <strong>下载</strong> jquery-ui build</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="centered">
+                <img src="image/jquery.png" class="img-responsive">
+            </p>
+            <p class="centered">
+                <a class="btn btn-primary btn-sm" href="https://vitalets.github.io/x-editable/assets/zip/jquery-editable-1.5.1.zip">
+                    <strong>下载</strong> jquery build</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 cdn">
+            <h4 class="">CDN 地址
+                <small id="cdnver">(1.5.0)</small> :
+                <label><input type="radio" checked="true" name="cdn-build" data-css="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" data-js="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js">bootstrap 3</label>
+                <label><input type="radio" name="cdn-build" data-css="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" data-js="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/js/bootstrap-editable.min.js">bootstrap 2</label>
+                <label><input type="radio" name="cdn-build" data-css="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" data-js="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/js/jqueryui-editable.min.js">jquery-ui</label>
+                <label><input type="radio" name="cdn-build" data-css="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css" data-js="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js">jquery</label>
+            </h4>
+
+            
+            <pre class="prettyprint">&lt;link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/&gt;
+&lt;script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"/&gt;&lt;/script&gt;</pre>
+
+            <div style="text-align: right">
+                <span class="muted" style="font-size: 0.85em">Provided by
+                    <a href="http://cdnjs.com" target="_blank">cdnjs.com</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="muted">最新版本</h2>
+            <h4>1.5.1 (Nov 4, 2013)</h4>
+            <ul>
+                <li>支持 bootstrap popover =
+                    <code>auto</code>
+                </li>
+                <li>支持
+                    <code>validate</code> 方法 改变值 </li>
+                <li>增加 select2 选择模式</li>
+            </ul>
+            <p>谢谢大家支持!</p>
+    
+            <div style="margin-top: 20px">
+                <a href="https://github.com/vitalets/x-editable/wiki/Release-notes">历史版本</a>
+                <br>
+                <a href="https://github.com/vitalets/x-editable/wiki/Roadmap">历史记录</a>
+                <br>
+                <a href="faq.html#donation">捐赠</a>
+                <br>
+            </div>
+    
+            <div style="margin-top: 20px; text-align: center">
+                <strong>AngularJS 项目</strong>
+                <br>
+                <br>
+                <a class="angular-xeditable" href="http://vitalets.github.io/angular-xeditable" target="_blank">Angular-xeditable</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2 class="muted">简述</h2>
+            <ul>
+                <li>弹出(popup) 与 内联(inline) 模式</li>
+                <li>支持input类型:
+                    <ul>
+                        <li>text</li>
+                        <li>textarea</li>
+                        <li>select</li>
+                        <li>date</li>
+                        <li>datetime</li>
+                        <li>dateui</li>
+                        <li>combodate</li>
+                        <li>html5types</li>
+                        <li>checklist</li>
+                        <li>wysihtml5</li>
+                        <li>typeahead</li>
+                        <li>typeaheadjs</li>
+                        <li>select2</li>
+                    </ul>
+                </li>
+                <li>客户端和服务端验证</li>
+                <li>容器管理</li>
+                <li>点击或者双击切换</li>
+                <li>支持快捷键 (escape/enter/tab)</li>
+                <li>支持ie7+，和所有主流浏览器</li>
+                <li>单元测试</li>
+                <li>事件</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2 class="muted">什么是 editable?</h2>
+            <ul>
+                <li>快读编辑form表单</li>
+                <li>减少代码量</li>
+                <li>增加 / 删除字段</li>
+                <li>用于后台数据修改</li>
+                <li>更好的用户体验</li>
+            </ul>
+            <br>
+            <h2 class="muted">相关项目</h2>
+            <ul>
+                <li>
+                    <a href="http://vitalets.github.io/angular-xeditable" target="_blank">Angular-xeditable</a>
+                    <small>by
+                        <a href="https://github.com/vitalets">Vitalets</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="http://x-editable.demopage.ru" target="_blank">X-editable for Yii</a>
+                    <small>by
+                        <a href="https://github.com/vitalets">Vitalets</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="https://github.com/brianchance/knockout-x-editable" target="_blank">Knockout binding</a>
+                    <small>by
+                        <a href="https://github.com/brianchance">brianchance</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="https://github.com/vitalets/x-editable/blob/gh-pages/backend-samples/php/laravel-controller.php" target="_blank">Laravel controller</a>
+                    <small>by
+                        <a href="https://github.com/clouddueling">Michael Calkins</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="http://cspeerly.github.com/Simple-ConnectDB" target="_blank">Simple-ConnectDB</a>
+                    <small>by
+                        <a href="https://github.com/cspeerly">Chuck Speerly</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="http://lightswitch05.github.io/filterable" target="_blank">Filterable</a>
+                    <small>by
+                        <a href="https://github.com/lightswitch05">lightswitch05</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="https://github.com/nate-strauser/meteor-x-editable-bootstrap" target="_blank">meteor-x-editable</a>
+                    <small>by
+                        <a href="https://github.com/nate-strauser">nate-strauser</a>
+                    </small>
+                </li>
+                <li>
+                    <a href="https://github.com/shipshapecode/ember-x-editable" target="_blank">Ember-x-editable</a>
+                    <small>by
+                        <a href="https://github.com/rwwagner90">rwwagner90</a>
+                    </small>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <load class="footer"></load>
+    <!-- /footer -->
+</div>
+
+<script>
+$(function(){
+    $(".footer").load('footer.html');
+
+
+    $("input[name='cdn-build']").click(function(){
+        var css_link = $(this).attr('data-css');
+        var js_link = $(this).attr('data-js');
+
+        $(".prettyprint").html('&lt;link href="'+ css_link +'" rel="stylesheet"/&gt;<br>&lt;script src="' + js_link +'"/&gt;&lt;/script&gt;');
+    });
+}); 
+</script>
+</body>
+</html>

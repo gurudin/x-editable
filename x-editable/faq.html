@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X-editable</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">X-editable</a>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">主页</a>
+                </li>
+                <li>
+                    <a href="demo.html" target="_blank">演示</a>
+                </li>
+                <li>
+                    <a href="docs.html">文档</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:;">常见问题</a>
+                </li>
+                <li>
+                    <a href="https://github.com/vitalets/x-editable" target="_blank">Github</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row" style="margin-top: 60px;">
+        <div class="span12">
+            <h1>常见的问题</h1>
+            <hr>
+    
+            <h3>怎么与服务器交互?</h3>
+            <p>X-editable 对服务端端语言没有限制，你可以写任何的服务端语言。
+                <br> 后端常用逻辑: </p>
+            <ol>
+                <li>读取请求传递的字段
+                    <code>pk</code>,
+                    <code>name</code> 和
+                    <code>value</code> (默认POST)。</li>
+                <li>验证value:</li>
+                <li>如果
+                    <span style="color: red">验证失败</span> - 返回 HTTP status != 200 (e.g.
+                    <i>400 Bad Request</i>) 和返回错误信息。</li>
+                <li>如果
+                    <span style="color: green">验证成功</span> - 按照业务逻辑处理和返回 HTTP status = 200 。</li>
+    
+            </ol>
+            <hr>
+    
+            <h3>服务端未获取到提交数据?</h3>
+            <p>检查传递字段
+                <code>pk</code> 和
+                <code>url</code> 是否为空。
+                <br>
+                如果所有修改内容主键是唯一可以全局设置<code>pk</code>字段固定传递。
+            </p>
+            <p>
+                如果没有更改值，表单不会提交，可设置
+                <code>savenochange</code> 选项
+            </p>
+            <hr>
+    
+            <h3>如何更新提交给服务端的内容?</h3>
+            <p>定义
+                <code>params</code>方法:</p>
+<pre>
+$('#field').editable({
+    ...        
+    params: function(params) {  //重新给 `name`, `value` , `pk` 字段赋值
+        var data = {};
+        data['id'] = params.pk;
+        data[params.name] = params.value;
+        return data;
+    }
+}); 
+</pre>
+            <hr>
+    
+            <h3>如何给提交的json转换成字符串?</h3>
+            <p>定义 <code>params</code> 方法:</p>
+<pre>
+//submit in JSON format        
+$('#field').editable({
+    ...        
+    params: function(params) {
+        return JSON.stringify(params);  //note: for older browsers you may need json2.js from json.org
+    }
+});  
+</pre>
+            <hr>
+    
+            <h3>如何自定义X-editable样式?</h3>
+            <p>重写css样式, e.g.</p>
+<pre>
+a.editable-click {
+    color: green;
+    border-color: green;
+} 
+a.editable-click.editable-disabled {
+    color: black;  
+    border-bottom: none;
+}
+a.editable-empty
+    color: gray;
+    font-style: italic;
+}
+</pre>
+    
+            <hr>
+    
+            <h3>如何创建自定义的控件?</h3>
+            <p>
+            </p>
+            <p>
+                要创建自定义的控件需要先查看引入的<a href="https://github.com/vitalets/x-editable/tree/master/src/inputs">第三方库</a>是否支持。
+                <br>
+                所有的输入来自<code>abstract.js</code>文件。
+            </p>
+            <p>
+                创建复杂的控件，例如
+                <a href="https://github.com/vitalets/x-editable/blob/master/src/inputs-ext/address/address.js">地址输入</a>:
+                <br>
+                x-editable的主要功能是
+                <strong>快速编辑表单更新到数据</strong>。
+                <br>
+                需要更复杂的表单处理可能x-editable暂时还不支持。
+                </p>
+            <p></p>
+            <hr>
+    
+            <a name="donation"></a>
+            <h3>如何支持X-editable发展?</h3>
+            <p>
+                如果有任何想法和反馈意见 可以在
+                <a href="http://github.com/vitalets/x-editable/issues">github</a> 下留言，或者发送
+                <a href="mailto:noginsk@rambler.ru">email</a>给我。
+            </p>
+            <p>也很感激你捐赠:</p>
+    
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="323QN8B6N4LN6">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <!--        <img alt="" border="0" src="https://www.paypalobjects.com/ru_RU/i/scr/pixel.gif" width="1" height="1">-->
+            </form>
+    
+            <p>or via Gtitip:
+                <script data-gittip-username="vitalets" data-gittip-widget="button" src="//gttp.co/v1.js"></script>
+            </p>
+    
+    
+            <p>谢谢!</p>
+            <p>
+                <strong>捐赠名单:</strong>
+            </p>
+            <ul>
+                <li>David Aronchick - $25</li>
+                <li>yolcu-iskender.com - $13</li>
+                <li>Ian Mayo - $50</li>
+                <li>Rene van de Peppel - $25</li>
+                <li>Nihad Hafiz - $20</li>
+                <li>Divan Moller - $15</li>
+                <li>Csstech - $100</li>
+                <li>Tony Dark - $40</li>
+                <li>Clint Morgan - $50</li>
+                <li>Alexander Galkin - $5</li>
+                <li>Kirsty Forrester - $50</li>
+                <li>Sébastien Arbogast - $20</li>
+                <li>Tony Dew - $50</li>
+            </ul>
+        </div>
+    </div>
+
+    <load class="footer"></load>
+</div>
+</body>
+
+<script>
+    $(function () {
+        $(".footer").load('footer.html');
+    });
+</script>

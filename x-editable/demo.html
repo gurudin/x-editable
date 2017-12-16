@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X-editable Demo</title>
+    <!-- jquery -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.get = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+    </script>
+    <!-- bootstrap 3 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- momentjs -->
+    <script src="http://vitalets.github.io/x-editable/assets/momentjs/moment.min.js"></script>
+    
+    <!-- select2 -->
+    <link href="http://vitalets.github.io/x-editable/assets/select2/select2.css" rel="stylesheet">
+    <script src="http://vitalets.github.io/x-editable/assets/select2/select2.js"></script>
+
+    <!-- x-editable (bootstrap 3) -->
+    <link href="http://vitalets.github.io/x-editable/assets/x-editable/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    
+    <!-- select2 bootstrap -->
+    <link href="http://vitalets.github.io/x-editable/assets/select2/select2-bootstrap.css" rel="stylesheet">
+    
+    <!-- typeaheadjs -->
+    <link href="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/typeaheadjs/lib/typeahead.js-bootstrap.css" rel="stylesheet">
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/typeaheadjs/lib/typeahead.js"></script>
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/typeaheadjs/typeaheadjs.js"></script>
+    
+    <!-- wysihtml5 -->
+    <link href="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.3/bootstrap-wysihtml5-0.0.3.css" rel="stylesheet">
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.3/wysihtml5-0.3.0.min.js"></script>
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.3/bootstrap-wysihtml5-0.0.3.min.js"></script>
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/wysihtml5/wysihtml5-0.0.3.js"></script>
+
+    <!-- address input -->
+    <link href="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/address/address.css" rel="stylesheet">
+    <script src="http://vitalets.github.io/x-editable/assets/x-editable/inputs-ext/address/address.js"></script>
+</head>
+
+<body>
+<div style="width: 80%; margin: auto; padding-top: 50px; padding-bottom: 30px;">
+    <h1>X-editable 演示</h1>
+    <hr>
+    <h2>设置</h2>
+
+    <form method="get" id="frm" class="form-inline" action="">
+        <label>
+            <span>选择样式: </span>
+            <select class="form-control">
+                <option value="bootstrap3">Bootstrap 3</option>
+            </select>
+        </label>
+    
+        <label style="margin-left: 30px">模式:
+            <select name="mode" class="form-control">
+                <option value="popup">Popup</option>
+            </select>
+        </label>
+    
+        <button type="submit" class="btn btn-primary" style="margin-left: 30px">refresh</button>
+    </form>
+
+    <hr>
+
+    <h2>例子</h2>
+    <div style="float: right; margin-bottom: 10px">
+        <label style="display: inline-block; margin-right: 50px">
+            <input type="checkbox" id="autoopen" style="vertical-align: baseline">&nbsp;自动打开编辑下一项</label>
+        <button id="enable" class="btn btn-default">可用 / 不可用</button>
+    </div>
+    <p>点击编辑</p>
+
+    <table id="user" class="table table-bordered table-striped" style="clear: both">
+        <tbody>
+            <tr>
+                <td width="35%">简单的文本编辑</td>
+                <td width="65%">
+                    <a href="#" id="username" >superuser</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>空文本, 验证不为空</td>
+                <td>
+                    <a href="#" id="firstname" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname" class="editable editable-click editable-empty"></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Select, 本地数组, 自定义显示</td>
+                <td>
+                    <a href="#" id="sex" data-type="select" data-pk="1" data-value="" data-title="Select sex" class="editable editable-click"
+                        style="color: gray;">not selected</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Select, 远程数组, 没有按钮</td>
+                <td>
+                    <a href="#" id="group" data-type="select" data-pk="1" data-value="5" data-title="Select group" class="editable editable-click">Admin</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Select, 加载错误</td>
+                <td>
+                    <a href="#" id="status" data-type="select" data-pk="1" data-value="0" data-source="/status" data-title="Select status"
+                        class="editable editable-click" data-original-title="" title="">Active</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Datepicker 日期选择器</td>
+                <td>
+                    <span class="notready text-muted">不支持Bootstrap 3</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Combodate (日期)</td>
+                <td>
+                    <a href="#" id="dob" data-type="combodate" data-value="1984-05-15" data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY"
+                        data-template="D / MMM / YYYY" data-pk="1" data-title="Select Date of birth" class="editable editable-click" data-original-title=""
+                        title="">15/05/1984</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Combodate (时间)</td>
+                <td>
+                    <a href="#" id="event" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="MMM D, YYYY, HH:mm"
+                        data-pk="1" data-title="Setup event date and time" class="editable editable-click editable-empty" data-original-title=""
+                        title="">Empty</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Textarea, 显示按钮. 快捷键确定
+                    <i>ctrl+enter</i>
+                </td>
+                <td>
+                    <a href="#" id="comments" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-title="Enter comments"
+                        class="editable editable-pre-wrapped editable-click editable-unsaved" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">awesome
+user!</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Twitter typeahead.js选择输入结果</td>
+                <td>
+                    <a href="#" id="state2" data-type="typeaheadjs" data-pk="1" data-placement="right" data-title="Start typing State.."
+                        class="editable editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">Californiakk</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Checklist 多选项</td>
+                <td>
+                    <a href="#" id="fruits" data-type="checklist" data-value="2,3" data-title="Select fruits" class="editable editable-click"
+                        data-original-title="" title="">peach
+                        <br>apple</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Select2 (选择标签模式)</td>
+                <td>
+                    <a href="#" id="tags" data-type="select2" data-pk="1" data-title="Enter tags" class="editable editable-click" data-original-title=""
+                        title="" style="background-color: rgba(0, 0, 0, 0);">html, js, javascript, ajax</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Select2 (下拉菜单模式)</td>
+                <td>
+                    <a href="#" id="country" data-type="select2" data-pk="1" data-value="BS" data-title="Select country" class="editable editable-click"
+                        data-original-title="" title="">Bahamas</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>自定义输入多个字段</td>
+                <td>
+                    <a href="#" id="address" data-type="address" data-pk="1" data-title="Please, fill address" class="editable editable-click"
+                        data-original-title="" title="">
+                        <b>Moscow</b>, Lenina st., bld. 12</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Wysihtml5 (富文本).
+                    <a href="#" id="pencil">
+                        <i class="icon-pencil" style="padding-right: 5px"></i>[编辑]</a>
+                </td>
+                <td>
+                    <div id="note" data-pk="1" data-type="wysihtml5" data-toggle="manual" data-title="Enter notes" data-placement="top" class="editable"
+                        tabindex="-1">
+                        <h3>WYSIWYG</h3>
+                        WYSIWYG means
+                        <i>What You See Is What You Get</i>.
+                        <br> But may also refer to:
+                        <ul>
+                            <li>WYSIWYG (album), a 2000 album by Chumbawamba</li>
+                            <li>"Whatcha See is Whatcha Get", a 1971 song by The Dramatics</li>
+                            <li>WYSIWYG Film Festival, an annual Christian film festival</li>
+                        </ul>
+                        <i>Source:</i>
+                        <a href="http://en.wikipedia.org/wiki/WYSIWYG_%28disambiguation%29">wikipedia.org</a>
+            
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="col-xs-12">
+        <h3>更多例子和代码
+            <small>(jsFiddle)</small>
+        </h3>
+        <ul>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/38" target="_blank">Submit data via PUT method</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/39" target="_blank">Autotext option for select</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/40" target="_blank">Display checklist as &lt;UL&gt;</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/62" target="_blank">Process JSON response</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/63" target="_blank">Editable column in table</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/64" target="_blank">MVC pattern in editable interface</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/194" target="_blank">Change buttons style</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/278" target="_blank">Display server response as element's text</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/297" target="_blank">Dependent SELECTs</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/331" target="_blank">Single regular checkbox</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/xBB5x/329" target="_blank">Live events: work with delegated targets</a>
+            </li>
+            <li>
+                <a href="http://jsfiddle.net/wQysh/8" target="_blank">SELECT2 remote source</a>
+            </li>
+        </ul>
+    </div> 
+
+    <!-- footer -->
+    <load class="footer"></load>
+    <!-- /footer -->
+</div>
+
+
+</body>
+
+<script src="js/common.js"></script>
